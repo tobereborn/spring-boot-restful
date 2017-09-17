@@ -1,4 +1,4 @@
-package com.github.tbr.spring;
+package com.github.tbr.spring.domain;
 
 public class Greeting {
     private final long id;
