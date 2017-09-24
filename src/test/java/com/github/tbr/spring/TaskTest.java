@@ -34,4 +34,14 @@ public class TaskTest {
             }
         }
     }
+
+    @Test
+    public void test2() throws Exception {
+        try {
+            throw new NullPointerException();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage(),e);
+        }
+
+    }
 }

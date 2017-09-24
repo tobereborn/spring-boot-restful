@@ -16,6 +16,7 @@ public class ExecutorConfig {
     private int maxPoolSize = 200;
     private int queueCapacity = 10;
 
+
     @Bean
     public Executor simpleExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
@@ -25,6 +26,7 @@ public class ExecutorConfig {
         executor.setThreadNamePrefix("SimpleExecutor");
         executor.initialize();
         return executor;
+
     }
 
     @Bean
@@ -37,6 +39,7 @@ public class ExecutorConfig {
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         executor.initialize();
         return executor;
+
     }
 
 }
