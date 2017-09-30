@@ -8,26 +8,24 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "user")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer id;
+    Integer id;
 
     @Column(name = "name")
-    private String name;
+    String name;
 
     @Column(name = "age")
-    private Integer age;
+    Integer age;
 
-
-
-
+    @Column(name = "is_married")
+    Boolean isMarried;
 }

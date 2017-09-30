@@ -2,29 +2,33 @@ package com.github.tbr.spring.web;
 
 
 import com.github.tbr.spring.domain.User;
-import com.github.tbr.spring.repository.UserRepository;
+import com.github.tbr.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    private final UserRepository userRepository;
+    private UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    @GetMapping("/save")
+    public void save(
+            @RequestParam(name = "name") String name,
+            @RequestParam(name = "age") int age,
+            @RequestParam(name = "isMarried") boolean isMarried) {
+        userService.save(name, age, isMarried);
     }
 
-    @RequestMapping("/user")
-    public List<User> user() {
-        User user = new User();
-        user.setName("Jack");
-        user.setAge(25);
-        userRepository.save(user);
-        return userRepository.findByName("Jack");
+    @GetMapping("/get")
+    public Optional<User> get(
+            @RequestParam(name = "name") String name) {
+        return userService.getUserByNanme(name);
     }
 }
