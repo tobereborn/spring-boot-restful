@@ -9,3 +9,10 @@ spring:
       ddl-auto: update
       dialect: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
+  aop:
+    proxy-target-class: true
+
+  #mvc:
+  #  view:
+   #   prefix: /WEB-INF/Views
+    #  suffix: jsp

@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
-
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -27,8 +25,8 @@ public class UserController {
     }
 
     @GetMapping("/get")
-    public Optional<User> get(
+    public User get(
             @RequestParam(name = "name") String name) {
-        return userService.getUserByNanme(name);
+        return userService.getUserByName(name).orElse(null);
     }
 }

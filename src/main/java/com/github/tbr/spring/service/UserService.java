@@ -4,14 +4,19 @@ package com.github.tbr.spring.service;
 import com.github.tbr.spring.domain.User;
 import com.github.tbr.spring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 @Service
 @Transactional
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -26,7 +31,23 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Optional<User> getUserByNanme(String name) {
+    public Optional<User> getUserByName(String name) {
         return userRepository.findOneByName(name);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+        return userRepository.findOneByName(name).map(u ->
+                new org.springframework.security.core.userdetails.User(
+                        u.getName(),
+                        "1234",
+                        Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")))
+        ).orElseThrow(() -> new UsernameNotFoundException(name));
+    }
+
+
+    public void changePassword() {
+
     }
 }
