@@ -1,15 +1,13 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Spring</title>
-    <link rel="stylesheet"
-          type="text/css"
-          href="<c:url value="/resources/style.css" />">
+    <meta charset="UTF-8">
+    <title>Hello</title>
 </head>
 <body>
-<h1>Welcome to Spring</h1>
-<a href="<c:url value="/spittles" />">Spittles</a> |
-<a href="<c:url value="/spitter/register" />">Register</a>
+
+<h2> Welcome to Spring Boot from JSP!</h2>
+
 </body>
+
 </html>
