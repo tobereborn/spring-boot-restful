@@ -10,3 +10,22 @@ CREATE TABLE `user` (
   `is_married` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE `post` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `message` varchar(600) NOT NULL,
+  `post_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  `latitude` double NOT NULL ,
+  `longitude` double NOT NULL ,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+insert into post (message,latitude,longitude) values
+("message1", 14.011, 15.002),
+("message2", 14.011, 15.002),
+("message3", 14.011, 15.002),
+("message4", 14.011, 15.002)
+;
