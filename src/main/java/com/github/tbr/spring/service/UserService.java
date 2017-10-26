@@ -32,6 +32,10 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
     @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return userRepository.findAll();

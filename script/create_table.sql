@@ -5,10 +5,11 @@ CREATE DATABASE IF NOT EXISTS `spring`
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `age` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `age` int(11) NOT NULL,
   `is_married` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY uk_name(`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 
