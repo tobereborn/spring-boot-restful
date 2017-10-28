@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page session="false" contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Hello</title>
+    <title>Home </title>
 </head>
 <body>
-
-<h2> Welcome to Spring Boot from JSP!</h2>
-
+<h1><s:message code="user.welcome"></s:message></h1>
 </body>
-
 </html>

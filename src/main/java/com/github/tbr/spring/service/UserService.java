@@ -22,16 +22,6 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    public void save(String name, int age, boolean isMarried) {
-        User user = User
-                .builder()
-                .name(name)
-                .age(age)
-                .isMarried(isMarried)
-                .build();
-        userRepository.save(user);
-    }
-
     public void save(User user) {
         userRepository.save(user);
     }
@@ -42,19 +32,19 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<User> getUserByName(String name) {
-        return userRepository.findOneByName(name);
+    public Optional<User> getUser(String userName) {
+        return userRepository.findOneByUserName(userName);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        return userRepository.findOneByName(name).map(u ->
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        return userRepository.findOneByUserName(userName).map(u ->
                 new org.springframework.security.core.userdetails.User(
-                        u.getName(),
-                        "1234",
+                        u.getUserName(),
+                        u.getPassword(),
                         Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")))
-        ).orElseThrow(() -> new UsernameNotFoundException(name));
+        ).orElseThrow(() -> new UsernameNotFoundException(userName));
     }
 
 

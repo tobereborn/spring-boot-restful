@@ -6,8 +6,10 @@
 </head>
 <body>
 <h1>Your Profile</h1>
-<c:out value="${user.name}"/><br/>
-<c:out value="${user.age}"/><br/>
-<c:out value="${user.isMarried}"/>
+<c:out value="${user.userName}"/><br/>
+<c:out value="${user.firstName}"/><br/>
+<c:out value="${user.lastName}"/><br/>
+<c:out value="${user.email}"/><br/>
+<c:out value="${user.single}"/>
 </body>
 </html>
