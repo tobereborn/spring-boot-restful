@@ -7,22 +7,22 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    @Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver resolver =
-                new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/views/");
-        resolver.setSuffix(".jsp");
-        resolver.setExposeContextBeansAsAttributes(true);
-        resolver.setViewClass(JstlView.class);
-        return resolver;
-    }
+////    @Bean
+//    public ViewResolver jspViewResolver() {
+//        InternalResourceViewResolver resolver =
+//                new InternalResourceViewResolver();
+//        resolver.setPrefix("/WEB-INF/views/");
+//        resolver.setSuffix(".jsp");
+//        resolver.setExposeContextBeansAsAttributes(true);
+//        resolver.setViewClass(JstlView.class);
+//        return resolver;
+//    }
 
     @Bean
     public MessageSource messageSource() {
@@ -31,6 +31,19 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         messageSource.setBasename("classpath:messages");
         messageSource.setCacheSeconds(5);
         return messageSource;
+    }
+
+    @Bean
+    public TilesConfigurer tilesConfigurer() {
+        TilesConfigurer tiles = new TilesConfigurer();
+        tiles.setDefinitions("/WEB-INF/layout/tiles.xml");
+        tiles.setCheckRefresh(true);
+        return tiles;
+    }
+
+    @Bean
+    public ViewResolver tilesViewResolver() {
+        return new TilesViewResolver();
     }
 
     @Override
