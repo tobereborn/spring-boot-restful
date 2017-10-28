@@ -24,32 +24,31 @@ public class User {
     private Long id;
 
     @NotNull
-    @Size(min = 5, max = 16)
+    @Size(min = 5, max = 16, message = "{userName.size}")
     @Column(name = "user_name")
     private String userName;
 
-
     @NotNull
-    @Size(min = 5, max = 25)
+    @Size(min = 5, max = 25, message = "{password.size}")
     @Column(name = "password")
     private String password;
 
     @NotNull
-    @Size(min = 1, max = 30)
+    @Size(min = 2, max = 30, message = "{firstName.size}")
     @Column(name = "first_name")
     private String firstName;
 
     @NotNull
-    @Size(min = 1, max = 30)
+    @Size(min = 2, max = 30, message = "{lastName.size}")
     @Column(name = "last_name")
     private String lastName;
 
-    @NotNull
-    @Email
+    @NotNull(message = "{email.empty}")
+    @Email(message = "{email.valid}")
     @Column(name = "email")
     private String email;
 
-    @NotNull
+    @NotNull(message = "{single.empty}")
     @Column(name = "single")
     Boolean single;
 }
