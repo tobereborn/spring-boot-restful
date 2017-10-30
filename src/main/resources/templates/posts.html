@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Posts</title>
+</head>
+<body>
+<h1>Posts</h1>
+<li th:each="post: ${postList}">
+    <div class="postMessage">
+        <span th:text="post_id_+${post.id}"> id</span>
+    </div>
+    <div>
+        <span class="postDate" th:text="${post.date}">date</span>
+        <span class="postLocation" th:text="(+${post.latitude}+,${post.longitude}+)">(latitude,longitude)</span>
+    </div>
+</li>
+</body>
+</html>

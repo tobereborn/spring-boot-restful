@@ -1,10 +1,15 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Home</title>
+    <link rel="stylesheet"
+          type="text/css"
+          th:href="@{/css/main.css}"/>
 </head>
 <body>
-<p th:text="'Hello, ' + ${name} + '!'"/>
+<h1>Welcome to spring</h1>
+<a th:href="@{/api/posts}">Posts</a>
+<a th:href="@{/api/registry}">Registry</a>
 </body>
 </html>

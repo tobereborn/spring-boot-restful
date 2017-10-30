@@ -7,8 +7,11 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import org.thymeleaf.templateresolver.TemplateResolver;
 
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
@@ -33,17 +36,41 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return messageSource;
     }
 
+//    @Bean
+//    public TilesConfigurer tilesConfigurer() {
+//        TilesConfigurer tiles = new TilesConfigurer();
+//        tiles.setDefinitions("/WEB-INF/layout/tiles.xml");
+//        tiles.setCheckRefresh(tr
+// ue);
+//        return tiles;
+//    }
+//
+//    @Bean
+//    public ViewResolver tilesViewResolver() {
+//        return new TilesViewResolver();
+//    }
+
     @Bean
-    public TilesConfigurer tilesConfigurer() {
-        TilesConfigurer tiles = new TilesConfigurer();
-        tiles.setDefinitions("/WEB-INF/layout/tiles.xml");
-        tiles.setCheckRefresh(true);
-        return tiles;
+    public ViewResolver viewResolver(SpringTemplateEngine templateEngine) {
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(templateEngine);
+        return viewResolver;
     }
 
     @Bean
-    public ViewResolver tilesViewResolver() {
-        return new TilesViewResolver();
+    public TemplateEngine templateEngine(TemplateResolver templateResolver) {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+        return templateEngine;
+    }
+
+    @Bean
+    public TemplateResolver templateResolver() {
+        TemplateResolver templateResolver = new ServletContextTemplateResolver();
+        templateResolver.setPrefix("/WEB-INF");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode("HTML5");
+        return templateResolver;
     }
 
     @Override
