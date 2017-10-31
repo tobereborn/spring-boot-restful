@@ -2,6 +2,8 @@ CREATE DATABASE IF NOT EXISTS `spring`
   DEFAULT CHARSET utf8
   COLLATE utf8_general_ci;
 
+use `spring`;
+
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
