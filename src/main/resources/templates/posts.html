@@ -8,11 +8,13 @@
 <h1>Posts</h1>
 <li th:each="post: ${postList}">
     <div class="postMessage">
-        <span th:text="post_id_+${post.id}"> id</span>
+        id: <span th:text="post_id_+${post.id}"> id</span>
     </div>
     <div>
-        <span class="postDate" th:text="${post.date}">date</span>
-        <span class="postLocation" th:text="(+${post.latitude}+,${post.longitude}+)">(latitude,longitude)</span>
+        date: <span class="postDate" th:text="${post.date}">date</span>
+    </div>
+    <div>
+        location: <span class="postLocation" th:text="${post.latitude}+','+${post.longitude}">location</span>
     </div>
 </li>
 </body>

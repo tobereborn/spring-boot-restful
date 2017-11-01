@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @GetMapping("/{userName}")
-    public String get(
+    public String getUser(
             @PathVariable String userName, Model model) {
         Optional<User> user = userService.getUser(userName);
         if (user.isPresent()) {

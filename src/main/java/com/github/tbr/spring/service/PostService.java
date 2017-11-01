@@ -18,15 +18,20 @@ import java.util.List;
 public class PostService {
 
     private PostRepository postRepository;
+    private SendPostService sendPostService;
+
 
     @Autowired
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, SendPostService sendPostService) {
         this.postRepository = postRepository;
+        this.sendPostService = sendPostService;
     }
 
     @Transactional(readOnly = true)
     public List<Post> getAllPosts() {
-        return postRepository.findAll();
+        List<Post> posts = postRepository.findAll();
+        sendPostService.sendPosts(posts);
+        return posts;
     }
 
     @Transactional(readOnly = true)
