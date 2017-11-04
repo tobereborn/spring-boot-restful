@@ -11,6 +11,11 @@ spring:
     show-sql: true
   aop:
     proxy-target-class: true
+#logging:
+#  file: logs/server.log
+
+
+
 
   #mvc:
   #  view:

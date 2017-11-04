@@ -3,6 +3,7 @@ package com.github.tbr.spring.service;
 
 import com.github.tbr.spring.domain.Post;
 import com.github.tbr.spring.repository.PostRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional
 public class PostService {
@@ -31,6 +33,7 @@ public class PostService {
     public List<Post> getAllPosts() {
         List<Post> posts = postRepository.findAll();
         sendPostService.sendPosts(posts);
+        log.info("get posts: {}", posts);
         return posts;
     }
 

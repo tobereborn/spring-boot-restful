@@ -2,3 +2,5 @@
 .idea/
 *.iml
 target/
+logs/
+log.dir_IS_UNDEFINED/
