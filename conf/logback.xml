@@ -153,12 +153,12 @@
     <property name="CONSOLE_LOG_PATTERN"
               value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
     <!-- Console 输出设置 -->
-    <!--<appender name="COLORFUL_STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
-        <!--<encoder>-->
-            <!--<pattern>${CONSOLE_LOG_PATTERN}</pattern>-->
-            <!--<charset>utf8</charset>-->
-        <!--</encoder>-->
-    <!--</appender>-->
+    <appender name="COLORFUL_STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
 
     <!--<logger name="org.springframework" level="WARN"/>-->
     <!--<logger name="org.hibernate" level="WARN"/>-->
@@ -185,6 +185,6 @@
         <appender-ref ref="FILE_INFO"/>
 
         <!-- 生产环境将请stdout -->
-        <!--<appender-ref ref="COLORFUL_STDOUT"/>-->
+        <appender-ref ref="COLORFUL_STDOUT"/>
     </root>
 </configuration>

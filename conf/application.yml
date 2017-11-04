@@ -11,6 +11,13 @@ spring:
     show-sql: true
   aop:
     proxy-target-class: true
+
+flyway:
+  locations: filesystem:db/migration
+  baseline-on-migrate: true
+
+server:
+  port: 8080
 #logging:
 #  file: logs/server2.log
 
