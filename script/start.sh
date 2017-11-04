@@ -11,7 +11,7 @@ echo "app_dir: $app_dir"
 echo "log_dir: $log_dir"
 echo "conf_dir: $conf_dir"
 
-${java_home}/bin/java  -Dlog.dir=${log_dir} \
+${java_home}/bin/java -Dlogging.file=${log_dir}/server.log  -Dlog.dir=${log_dir} \
      -jar ${jar} \
      com.github.tbr.spring.Application \
      --spring.config.location=${conf_dir}/application.yml \

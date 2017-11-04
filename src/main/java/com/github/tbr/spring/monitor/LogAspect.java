@@ -1,24 +1,27 @@
 package com.github.tbr.spring.monitor;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.context.annotation.Configuration;
 
+@Slf4j
 @Aspect
 @Configuration
-public class MonitorAspect {
+public class LogAspect {
 
     //@Around("execution(* com.github.tbr.spring..*.getAllPosts(..))")
-    @Around("@annotation(com.github.tbr.spring.monitor.Monitor)")
+    @Around("@annotation(com.github.tbr.spring.monitor.Log)")
     public Object watch(ProceedingJoinPoint jp) {
         Object object = null;
         try {
-            System.out.println("Before:" + jp.getTarget().getClass());
+            log.info("Monitor before for : {}", jp.getTarget().getClass());
             object = jp.proceed();
-            System.out.println("After:" + jp.getTarget().getClass());
+            log.info("Monitor after for :{}", jp.getTarget().getClass());
         } catch (Throwable throwable) {
-            System.out.println("Error:" + throwable);
+            log.info("Monitor error: {}, for :{}", throwable, jp.getTarget().getClass());
+            throw new RuntimeException(throwable);
         }
         return object;
     }

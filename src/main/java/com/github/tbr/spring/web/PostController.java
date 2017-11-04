@@ -1,7 +1,7 @@
 package com.github.tbr.spring.web;
 
 
-import com.github.tbr.spring.monitor.Monitor;
+import com.github.tbr.spring.monitor.Log;
 import com.github.tbr.spring.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @Monitor
+    @Log
     @GetMapping("/posts")
     public String getAllPosts(Model model) {
         model.addAttribute(postService.getAllPosts());
