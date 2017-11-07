@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registry</title>
+</head>
+<body>
+<h1>Registry</h1>
+<form method="post" th:object="${user}">
+    <div class="errors" th:if="${#fields.hasErrors('*')}">
+        <ul>
+            <li th:each="error : ${#fields.errors('*')}" th:text="${error}"> Input is incorrect</li>
+        </ul>
+    </div>
+    <label th:class="${#fields.hasErrors('userName')}? 'error'"> User Name</label>:
+    <input type="text" th:field="*{userName}" th:class="${#fields.hasErrors('userName')}? 'error'"/><br/>
+
+    <label th:class="${#fields.hasErrors('firstName')}? 'error'"> First Name</label>:
+    <input type="text" th:field="*{firstName}" th:class="${#fields.hasErrors('firstName')}? 'error'"/><br/>
+
+    <label th:class="${#fields.hasErrors('lastName')}? 'error'"> Last Name</label>:
+    <input type="text" th:field="*{lastName}" th:class="${#fields.hasErrors('lastName')}? 'error'"/><br/>
+
+    <label th:class="${#fields.hasErrors('email')}? 'error'"> Email</label>:
+    <input type="text" th:field="*{email}" th:class="${#fields.hasErrors('email')}? 'error'"/><br/>
+
+    <label th:class="${#fields.hasErrors('single')}? 'error'"> Single</label>:
+    <input type="radio" th:field="*{single}" th:value="true" th:class="${#fields.hasErrors('single')}? 'error'"/>Yes
+    <input type="radio" th:field="*{single}" th:value="false"
+           th:class="${#fields.hasErrors('single')}? 'error'"/>No<br/>
+
+    <label th:class="${#fields.hasErrors('password')}? 'error'"> Password</label>:
+    <input type="password" th:field="*{password}" th:class="${#fields.hasErrors('password')}? 'error'"/><br/>
+
+    <input type="submit" value="Registry"/>
+</form>
+</body>
+</html>
