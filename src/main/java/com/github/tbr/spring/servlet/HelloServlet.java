@@ -1,8 +1,6 @@
 package com.github.tbr.spring.servlet;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @Slf4j
-@Component
-@Primary
+//@Component
+//@Primary
 public class HelloServlet extends HttpServlet {
 
     @Override

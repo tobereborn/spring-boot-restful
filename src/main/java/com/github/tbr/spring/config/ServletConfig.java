@@ -1,24 +1,42 @@
 package com.github.tbr.spring.config;
 
 import com.github.tbr.spring.servlet.GoodbyeServlet;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.ServletComponentScan;
+import com.github.tbr.spring.servlet.HelloFilter;
+import com.github.tbr.spring.servlet.HelloServlet;
+import com.github.tbr.spring.servlet.SimpleListener;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.servlet.Servlet;
-
 @Configuration
 //@ComponentScan(basePackageClasses = {HelloServlet.class})
-@ServletComponentScan(basePackageClasses = {GoodbyeServlet.class})
+//@ServletComponentScan(basePackageClasses = {GoodbyeServlet.class})
 public class ServletConfig {
 
-    @Autowired
-    private Servlet servlet;
 
     @Bean
-    public ServletRegistrationBean servletRegistrationBean() {
-        return new ServletRegistrationBean(servlet, "/hello/*");
+    public ServletRegistrationBean helloServletRegistrationBean() {
+        return new ServletRegistrationBean(new HelloServlet(), "/hello/*");
+    }
+
+    @Bean
+    public ServletRegistrationBean goodbyeServletRegistrationBean() {
+        return new ServletRegistrationBean(new GoodbyeServlet(), "/goodbye/*");
+    }
+
+    @Bean
+    public FilterRegistrationBean filterRegistrationBean() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean(new HelloFilter());
+        registrationBean.addUrlPatterns("/hello/*");
+        return registrationBean;
+    }
+
+    @Bean
+    public ServletListenerRegistrationBean<SimpleListener> servletListenerRegistrationBean() {
+        ServletListenerRegistrationBean<SimpleListener> registrationBean = new ServletListenerRegistrationBean<SimpleListener>();
+        registrationBean.setListener(new SimpleListener());
+        return registrationBean;
     }
 }
