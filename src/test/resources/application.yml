@@ -9,6 +9,19 @@ spring:
       ddl-auto: update
       dialect: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
-
   aop:
     proxy-target-class: true
+
+flyway:
+  locations: filesystem:db/migration
+  baseline-on-migrate: true
+
+server:
+  port: 8080
+#logging:
+#  file: logs/server2.log
+
+  #mvc:
+  #  view:
+   #   prefix: /WEB-INF/Views
+    #  suffix: jsp
