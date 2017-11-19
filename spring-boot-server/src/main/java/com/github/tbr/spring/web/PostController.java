@@ -4,6 +4,7 @@ package com.github.tbr.spring.web;
 import com.github.tbr.spring.domain.Post;
 import com.github.tbr.spring.monitor.Log;
 import com.github.tbr.spring.service.PostService;
+import com.github.tbr.spring.service.SpiServiceManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,9 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private SpiServiceManager spiServiceManager;
+
     @Log
     @GetMapping("/posts")
     public String getAllPosts(Model model) {
@@ -29,11 +33,19 @@ public class PostController {
     }
 
 
-    @GetMapping("/all")
+    @GetMapping(value = "/all", produces = {"application/json;charset=UTF-8"})
     public
     @ResponseBody
     List<Post> getAllPosts() {
         return postService.getAllPosts();
+    }
+
+    @GetMapping(value = "/producers", produces = {"application/json;charset=UTF-8"})
+    public
+    @ResponseBody
+    List<String> getAllProducers() {
+        return spiServiceManager.showAllProducers();
+
     }
 
     @GetMapping("/pages")

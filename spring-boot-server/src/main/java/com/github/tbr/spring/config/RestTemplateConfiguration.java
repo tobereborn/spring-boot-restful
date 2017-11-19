@@ -11,15 +11,9 @@ import org.apache.http.message.BasicHeader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
-import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -66,14 +60,14 @@ public class RestTemplateConfiguration {
 
         // 添加内容转换器
         List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
-        messageConverters.add(new StringHttpMessageConverter(Charset.forName("UTF-8")));
-        messageConverters.add(new FormHttpMessageConverter());
-        messageConverters.add(new MappingJackson2XmlHttpMessageConverter());
-        messageConverters.add(new MappingJackson2HttpMessageConverter());
+//        messageConverters.add(new StringHttpMessageConverter(Charset.forName("UTF-8")));
+//        messageConverters.add(new FormHttpMessageConverter());
+//        messageConverters.add(new MappingJackson2XmlHttpMessageConverter());
+//        messageConverters.add(new MappingJackson2HttpMessageConverter());
 
-        RestTemplate restTemplate = new RestTemplate(messageConverters);
+        RestTemplate restTemplate = new RestTemplate();
         restTemplate.setRequestFactory(clientHttpRequestFactory);
-        restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
+//        restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
 
         return restTemplate;
     }

@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 *.iml
-target/
-logs/
+target
+logs
 log.dir_IS_UNDEFINED/
