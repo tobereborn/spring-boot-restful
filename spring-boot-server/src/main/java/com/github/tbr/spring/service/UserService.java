@@ -3,6 +3,7 @@ package com.github.tbr.spring.service;
 
 import com.github.tbr.spring.domain.User;
 import com.github.tbr.spring.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @Transactional
 public class UserService implements UserDetailsService {
@@ -33,7 +35,13 @@ public class UserService implements UserDetailsService {
 
     @Transactional(readOnly = true)
     public Optional<User> getUser(String userName) {
-        return userRepository.findOneByUserName(userName);
+        log.info("userName: {}", userName);
+        Optional<User> user = userRepository.findOneByUserName(userName);
+        if (!user.isPresent()) {
+            throw new RuntimeException("Test");
+        }
+        return user;
+
     }
 
     @Transactional(readOnly = true)

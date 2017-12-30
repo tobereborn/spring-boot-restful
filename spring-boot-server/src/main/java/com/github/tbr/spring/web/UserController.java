@@ -47,6 +47,11 @@ public class UserController {
             model.addAttribute(user.get());
             return "profile";
         }
-        return "error";
+        return "home";
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public String handleException() {
+        return "home";
     }
 }
